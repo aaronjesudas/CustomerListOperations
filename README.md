@@ -4,6 +4,7 @@ From a list of customers, finding out set of customers holding same set of accou
 ## Logic used
 ### Transformation Logic
 The given list of customer objects are transformed first to a different data structure as follows
+A seperate datastructure is defined and used to hold this data (CustomerAccMapping.java)
 ```json
 [
   { 1, [ 101, 103 ] }, 
@@ -23,3 +24,27 @@ During every cycle, this list is updated and the filter is applied on the curren
 For each object in the above mapping, the entire list is scanned to identify customers using same set of accounts
 Here also there is a possibility of multiple cycles processing the same set of customers in different order
 A dynamic filter is applied here as well to avoid duplicate processing.
+
+To hold the above data another data structure is defined and used (AccountSetToCustomerSetMap.java)
+This will present the data in the following format
+```json
+[
+  { [ 1, 2 ], [ 101, 103 ] },
+  { [ 3, 7, 9 ], [ 106 ] },
+  { [ 105 ], [ 5 ] },
+  { [ 10 ], [ 201, 201, 202 ] }
+]
+```
+### Cleansing and Printing
+The above data strucutre holds some objects which represents accounts which are not shared by customers.
+The last 2 entries have only one customer in the set and hence is not required in the final output data.
+These entries are filtered out using count of customers in the customer set inside each object. Any entry with less than 2 customers in the set is not eliminated.
+
+## Final Output
+
+The final output is as follows
+
+```
+These customers : [1, 2], share these accounts : [101, 103]
+These customers : [3, 7, 9], share these accounts : [106]
+```
