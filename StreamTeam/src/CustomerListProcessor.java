@@ -29,12 +29,12 @@ public class CustomerListProcessor {
 											alreadyCheckedCustomers.add(customer.getCustomerId());
 											customerAccountMap.add(new CustomerAccMapping(
 					
-																							customer.getCustomerId(), 
-																							(customers.stream()
-																										.filter(x -> x.getCustomerId().equals(customer.getCustomerId()))
-																										.map(y -> y.getAccountId())
-																										.collect(Collectors.toList()))
-																						));
+																	customer.getCustomerId(), 
+																	(customers.stream()
+																			.filter(x -> x.getCustomerId().equals(customer.getCustomerId()))
+																			.map(y -> y.getAccountId())
+																			.collect(Collectors.toList()))
+																	));
 					});
 		//at this point we have the transformed data structure
 		/*
@@ -49,9 +49,9 @@ public class CustomerListProcessor {
 		
 		customerAccountMap.stream().filter( x -> (!alreadyCheckedAccounts.contains(x.customerId)))
 							.forEach(cusMap -> {  List<String> listOfMatchingCustomers = customerAccountMap.stream()
-																											.filter(x -> x.getAccountIds().containsAll(cusMap.getAccountIds()))
-																											.map(z -> z.getCustomerId())
-																											.collect(Collectors.toList());
+																	.filter(x -> x.getAccountIds().containsAll(cusMap.getAccountIds()))
+																	.map(z -> z.getCustomerId())
+																	.collect(Collectors.toList());
 													//Filter is dynamically updated here
 													alreadyCheckedAccounts.addAll(listOfMatchingCustomers);
 													accSetToCusSetMap.add(new AccountSetToCustomerSetMap(cusMap.getAccountIds(), listOfMatchingCustomers));
