@@ -36,7 +36,7 @@ This will present the data in the following format
 ]
 ```
 ### Cleansing and Printing
-The above data strucutre holds a few objects which with accounts which are not shared by customers.
+The above data strucutre holds a few objects with accounts which are not shared by customers.
 The last 2 entries have only one customer in the set and hence is not required in the final output data.
 These entries are filtered out using count of customers in the customer set inside each object. Any entry with less than 2 customers in the set is eliminated.
 
